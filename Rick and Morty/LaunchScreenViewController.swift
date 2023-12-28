@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LaunchScreenViewController.swift
 //  Rick and Morty
 //
 //  Created by Vitaliy Iakushev on 27.12.2023.
@@ -7,9 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    var transitionCompletion: (() -> Void)?
+class LaunchScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,24 +48,18 @@ class ViewController: UIViewController {
         rotationAnimation.repeatCount = Float.greatestFiniteMagnitude
         loadingImageView.layer.add(rotationAnimation, forKey: "rotationAnimation")
         
-        // Задержка перед переходом на основной экран
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.navigateToEpisodesScreen()
+        // Задаем таймер для перехода на основной экран
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.dismiss(animated: true, completion: nil)
+            self.navigateToMainScreen()
         }
     }
     
-    private func navigateToEpisodesScreen() {
-        let episodesViewController = EpisodesViewController()
-        let navigationController = UINavigationController(rootViewController: episodesViewController)
-        navigationController.navigationBar.isHidden = true
-        navigationController.modalTransitionStyle = .crossDissolve
-        navigationController.modalPresentationStyle = .fullScreen
-        // Запускаем замыкание перед переходом
-        self.transitionCompletion?()
-        
-        // Показываем EpisodesViewController после закрытия AnimatedLaunchScreenViewController
-        self.present(navigationController, animated: true, completion: nil)
+    private func navigateToMainScreen() {
+        let vc = EpisodesViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
     }
     
 }
-
