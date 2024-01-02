@@ -7,38 +7,23 @@
 
 import UIKit
 
-//class EpisodesViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .white
-//
-//        let label = UILabel()
-//        label.text = "This is Episodes screen"
-//        label.font = UIFont.systemFont(ofSize: 24)
-//        label.textAlignment = .center
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//
-//        view.addSubview(label)
-//
-//        NSLayoutConstraint.activate([
-//            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-//}
 
 class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var collectionView: UICollectionView!
     
     var episodesData: [EpisodeData] = []
+    var favouriteEpisodes: Set<String> = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        favouriteEpisodes = loadFavoritesSet()
+        print(favouriteEpisodes)
+        
         fetchData()
+//        removeAllFavorites()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             
@@ -59,12 +44,7 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
             
             // Обновляем данные в коллекции
             self.collectionView.reloadData()
-            
-            print(self.episodesData[0].episodeName)
-            print(self.episodesData[0].episodeNumber)
-            print(self.episodesData[0].characterName)
-            print(self.episodesData[0].characterSpecies)
-            print(self.episodesData[0].characterImage)
+
         }
         
         
@@ -130,9 +110,40 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
         let episode = episodesData[indexPath.item]
         cell.configure(with: episode)
         
+        if favouriteEpisodes.contains(episode.episodeNumber) {
+            cell.isFavorite = true
+        }
+        
         return cell
     }
     
+    func loadFavoritesSet() -> Set<String> {
+        guard let favoritesData = UserDefaults.standard.dictionary(forKey: "favorites") as? [String: Data] else {
+            return []
+        }
+
+        var favorites: Set<String> = Set<String>()
+
+        for (key, data) in favoritesData {
+            if let episodeData = try? JSONDecoder().decode(EpisodeData.self, from: data) {
+                favorites.insert(key)
+                print(key)
+            }
+        }
+        print(favorites)
+        return favorites.isEmpty ? [] : favorites
+    }
     
-    
+    private func removeAllFavorites() {
+        // Получаем словарь из UserDefaults
+        var favorites: [String: Data] = [:]
+     
+        
+        // Сохраняем обновленный словарь в UserDefaults
+        UserDefaults.standard.set(favorites, forKey: "favorites")
+        
+        // Выводим сообщение
+        print("All favs deleted")
+        print(favorites)
+    }
 }

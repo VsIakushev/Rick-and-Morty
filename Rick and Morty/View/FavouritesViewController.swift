@@ -12,12 +12,15 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
     
     var collectionView: UICollectionView!
     
-    var episodesData: [EpisodeData] = []
+    var favouriteEpisodesData: [EpisodeData] = []
+    var favouriteEpisodes: Set<String> = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        episodesData = loadFavorites()
+        favouriteEpisodesData = loadFavorites()
+        favouriteEpisodes = loadFavoritesSet()
+        print(favouriteEpisodes)
         
   
         
@@ -41,11 +44,6 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
             // Обновляем данные в коллекции
             self.collectionView.reloadData()
             
-            print(self.episodesData[0].episodeName)
-            print(self.episodesData[0].episodeNumber)
-            print(self.episodesData[0].characterName)
-            print(self.episodesData[0].characterSpecies)
-            print(self.episodesData[0].characterImage)
         }
         
         
@@ -60,7 +58,7 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
 
         var favorites: [EpisodeData] = []
 
-        for (_, data) in favoritesData {
+        for (key, data) in favoritesData {
             if let episodeData = try? JSONDecoder().decode(EpisodeData.self, from: data) {
                 favorites.append(episodeData)
                 print(episodeData)
@@ -72,19 +70,39 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return episodesData.count
+        return favouriteEpisodesData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         
         // Заполняем ячейку данными из episodesData
-        let episode = episodesData[indexPath.item]
+        let episode = favouriteEpisodesData[indexPath.item]
         cell.configure(with: episode)
+        
+        // проверяем есть ли уже в избранном
+        if favouriteEpisodes.contains(episode.episodeNumber) {
+            cell.isFavorite = true
+        }
         
         return cell
     }
     
-    
+    func loadFavoritesSet() -> Set<String> {
+        guard let favoritesData = UserDefaults.standard.dictionary(forKey: "favorites") as? [String: Data] else {
+            return []
+        }
+
+        var favorites: Set<String> = Set<String>()
+
+        for (key, data) in favoritesData {
+            if let episodeData = try? JSONDecoder().decode(EpisodeData.self, from: data) {
+                favorites.insert(key)
+                print(key)
+            }
+        }
+        print(favorites)
+        return favorites.isEmpty ? [] : favorites
+    }
     
 }

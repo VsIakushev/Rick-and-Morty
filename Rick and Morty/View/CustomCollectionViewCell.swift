@@ -10,7 +10,6 @@ import UIKit
 class CustomCollectionViewCell: UICollectionViewCell {
     
     // переменные для сохранения в избранное
-    
     var episodeName: String = ""
     var episodeNumber: String = ""
     var characterName: String = ""
@@ -19,35 +18,35 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     
     var isFavorite: Bool = false {
-            didSet {
-                // Изменяем цвет кнопки в зависимости от isFavorite
-                let heartImageName = isFavorite ? "heart.fill" : "heart"
-                heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
-
-                // Изменяем цвета кнопки
-                let buttonColor: UIColor = isFavorite ? .red : .systemBlue
-                heartButton.tintColor = buttonColor
-
-                // Выводим сообщение в зависимости от isFavorite
-                if isFavorite {
-                    addToFavorites()
-                } else {
-                    removeFromFavorites()
-                }
+        didSet {
+            // Изменяем цвет кнопки в зависимости от isFavorite
+            let heartImageName = isFavorite ? "heart.fill" : "heart"
+            heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
+            
+            // Изменяем цвета кнопки
+            let buttonColor: UIColor = isFavorite ? .red : .systemBlue
+            heartButton.tintColor = buttonColor
+            
+            // Выводим сообщение в зависимости от isFavorite
+            if isFavorite {
+//                addToFavorites()
+            } else {
+//                removeFromFavorites()
             }
         }
+    }
     
     let containerView: UIView = {
-            let view = UIView()
-            view.backgroundColor = .white
-            view.layer.cornerRadius = 10
-            view.layer.shadowColor = UIColor.black.cgColor
-            view.layer.shadowOffset = CGSize(width: 0, height: 2)
-            view.layer.shadowOpacity = 0.2
-            view.layer.shadowRadius = 4
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 4
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -103,7 +102,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
         setupViews()
         
         // Добавляем обработчик события для кнопки
-                heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
+        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -124,33 +123,33 @@ class CustomCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(heartButton)
         
         NSLayoutConstraint.activate([
-                    containerView.topAnchor.constraint(equalTo: topAnchor),
-                    containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                    containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                    containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-                    
-                    imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-                    imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                    imageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                    imageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 2/3),
-                    
-                    nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
-                    nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-                    
-                    speciesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
-                    speciesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-                    
-                    grayContainerView.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 5),
-                    grayContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                    grayContainerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                    grayContainerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-                    
-                    episodeLabel.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 15),
-                    episodeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-                    
-                    heartButton.centerYAnchor.constraint(equalTo: episodeLabel.centerYAnchor),
-                    heartButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
-                ])
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            imageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            imageView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 2/3),
+            
+            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
+            nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+            
+            speciesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
+            speciesLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+            
+            grayContainerView.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 5),
+            grayContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            grayContainerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            grayContainerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            
+            episodeLabel.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 15),
+            episodeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+            
+            heartButton.centerYAnchor.constraint(equalTo: episodeLabel.centerYAnchor),
+            heartButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+        ])
     }
     
     // Метод для конфигурации ячейки данными
@@ -167,10 +166,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
             }.resume()
         }
         
+        
+        
         // Устанавливаем текст в label
         nameLabel.text = "\(episode.characterName)"
         speciesLabel.text = "\(episode.characterSpecies)"
         episodeLabel.text = "\(episode.episodeName) | \(episode.episodeNumber)"
+        
         
         // сохраняем данные в переменные, на случай добавления в избранное
         self.episodeName = episode.episodeName
@@ -178,13 +180,19 @@ class CustomCollectionViewCell: UICollectionViewCell {
         self.characterName = episode.characterName
         self.characterSpecies = episode.characterSpecies
         self.characterImage = episode.characterImage
-       
+        
     }
     
     @objc private func heartButtonTapped() {
-           // Инвертируем значение isFavorite при каждом нажатии на кнопку
-           isFavorite.toggle()
-       }
+        // Инвертируем значение isFavorite при каждом нажатии на кнопку
+        isFavorite.toggle()
+        
+        if isFavorite {
+            addToFavorites()
+        } else {
+            removeFromFavorites()
+        }
+    }
     
     private func addToFavorites() {
         // Получаем словарь из UserDefaults
@@ -194,29 +202,18 @@ class CustomCollectionViewCell: UICollectionViewCell {
         } else {
             favorites = [:]
         }
-
+        
         if let jsonData = try? JSONEncoder().encode(EpisodeData(episodeName: episodeName, episodeNumber: episodeNumber, characterName: characterName, characterSpecies: characterSpecies, characterImage: characterImage)) {
-               // Добавляем ячейку в избранное
-               favorites[episodeName] = jsonData
-
-               // Сохраняем обновленный словарь в UserDefaults
-               UserDefaults.standard.set(favorites, forKey: "favorites")
-
-               // Выводим сообщение
-               print("added to fav")
+            // Добавляем ячейку в избранное
+            favorites[episodeNumber] = jsonData
+            
+            // Сохраняем обновленный словарь в UserDefaults
+            UserDefaults.standard.set(favorites, forKey: "favorites")
+            
+            // Выводим сообщение
+            print("added to fav")
             print(favorites)
-           }
-        
-        
-        // Добавляем ячейку в избранное
-//        favorites[episodeName] = EpisodeData(episodeName: episodeName, episodeNumber: episodeNumber, characterName: characterName, characterSpecies: characterSpecies, characterImage: characterImage)
-
-        // Сохраняем обновленный словарь в UserDefaults
-//        UserDefaults.standard.set(favorites, forKey: "favorites")
-//
-//        // Выводим сообщение
-//        print("added to fav")
-//        print(favorites)
+        }
     }
     
     private func removeFromFavorites() {
@@ -227,32 +224,34 @@ class CustomCollectionViewCell: UICollectionViewCell {
         } else {
             favorites = [:]
         }
-
+        
         // Удаляем ячейку из избранного
-        favorites.removeValue(forKey: episodeName)
-
+        favorites.removeValue(forKey: episodeNumber)
+        
         // Сохраняем обновленный словарь в UserDefaults
         UserDefaults.standard.set(favorites, forKey: "favorites")
-
+        
         // Выводим сообщение
         print("deleted from fav")
         print(favorites)
     }
+    
+    
     
     // Перенести на экран Favourites для загрузки
     func loadFavorites() -> [String: EpisodeData]? {
         guard let favoritesData = UserDefaults.standard.dictionary(forKey: "favorites") as? [String: Data] else {
             return [:]
         }
-
+        
         var favorites: [String: EpisodeData] = [:]
-
+        
         for (key, data) in favoritesData {
             if let episode = try? JSONDecoder().decode(EpisodeData.self, from: data) {
                 favorites[key] = episode
             }
         }
-
+        
         return favorites.isEmpty ? [:] : favorites
     }
     
