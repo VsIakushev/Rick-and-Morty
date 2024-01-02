@@ -71,12 +71,28 @@
 				5718F00E2B3CA3FB00A0FDBA /* EpisodesViewController.swift */,
 				5718F0802B42072D00A0FDBA /* TabBarController.swift */,
 				5718F0822B42075800A0FDBA /* FavouritesViewController.swift */,
+				5718F1082B44A4D600A0FDBA /* View */,
+				5718F1072B44A4CD00A0FDBA /* Model */,
 				5718F0002B3CA3C000A0FDBA /* Main.storyboard */,
 				5718F0032B3CA3C100A0FDBA /* Assets.xcassets */,
 				5718F0052B3CA3C100A0FDBA /* LaunchScreen.storyboard */,
 				5718F0082B3CA3C100A0FDBA /* Info.plist */,
 			);
 			path = "Rick and Morty";
+			sourceTree = "<group>";
+		};
+		5718F1072B44A4CD00A0FDBA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5718F1082B44A4D600A0FDBA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
