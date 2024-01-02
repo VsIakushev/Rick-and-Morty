@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5718EFFB2B3CA3C000A0FDBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718EFFA2B3CA3C000A0FDBA /* AppDelegate.swift */; };
 		5718EFFD2B3CA3C000A0FDBA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718EFFC2B3CA3C000A0FDBA /* SceneDelegate.swift */; };
-		5718EFFF2B3CA3C000A0FDBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718EFFE2B3CA3C000A0FDBA /* ViewController.swift */; };
 		5718F0022B3CA3C000A0FDBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718F0002B3CA3C000A0FDBA /* Main.storyboard */; };
 		5718F0042B3CA3C100A0FDBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718F0032B3CA3C100A0FDBA /* Assets.xcassets */; };
 		5718F0072B3CA3C100A0FDBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718F0052B3CA3C100A0FDBA /* LaunchScreen.storyboard */; };
@@ -17,13 +16,16 @@
 		5718F0352B3CFBDF00A0FDBA /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F0342B3CFBDF00A0FDBA /* LaunchScreenViewController.swift */; };
 		5718F0812B42072D00A0FDBA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F0802B42072D00A0FDBA /* TabBarController.swift */; };
 		5718F0832B42075800A0FDBA /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F0822B42075800A0FDBA /* FavouritesViewController.swift */; };
+		5718F10A2B44A59A00A0FDBA /* EpisodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F1092B44A59A00A0FDBA /* EpisodeData.swift */; };
+		5718F10C2B44A5B400A0FDBA /* CharacterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F10B2B44A5B400A0FDBA /* CharacterData.swift */; };
+		5718F10E2B44A5DE00A0FDBA /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F10D2B44A5DE00A0FDBA /* Episode.swift */; };
+		5718F1102B44A68900A0FDBA /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F10F2B44A68900A0FDBA /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5718EFF72B3CA3C000A0FDBA /* Rick and Morty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick and Morty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718EFFA2B3CA3C000A0FDBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5718EFFC2B3CA3C000A0FDBA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5718EFFE2B3CA3C000A0FDBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5718F0012B3CA3C000A0FDBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5718F0032B3CA3C100A0FDBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5718F0062B3CA3C100A0FDBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +34,10 @@
 		5718F0342B3CFBDF00A0FDBA /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		5718F0802B42072D00A0FDBA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5718F0822B42075800A0FDBA /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		5718F1092B44A59A00A0FDBA /* EpisodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeData.swift; sourceTree = "<group>"; };
+		5718F10B2B44A5B400A0FDBA /* CharacterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterData.swift; sourceTree = "<group>"; };
+		5718F10D2B44A5DE00A0FDBA /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		5718F10F2B44A68900A0FDBA /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,11 +72,6 @@
 			children = (
 				5718EFFA2B3CA3C000A0FDBA /* AppDelegate.swift */,
 				5718EFFC2B3CA3C000A0FDBA /* SceneDelegate.swift */,
-				5718EFFE2B3CA3C000A0FDBA /* ViewController.swift */,
-				5718F0342B3CFBDF00A0FDBA /* LaunchScreenViewController.swift */,
-				5718F00E2B3CA3FB00A0FDBA /* EpisodesViewController.swift */,
-				5718F0802B42072D00A0FDBA /* TabBarController.swift */,
-				5718F0822B42075800A0FDBA /* FavouritesViewController.swift */,
 				5718F1082B44A4D600A0FDBA /* View */,
 				5718F1072B44A4CD00A0FDBA /* Model */,
 				5718F0002B3CA3C000A0FDBA /* Main.storyboard */,
@@ -84,6 +85,9 @@
 		5718F1072B44A4CD00A0FDBA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5718F1092B44A59A00A0FDBA /* EpisodeData.swift */,
+				5718F10B2B44A5B400A0FDBA /* CharacterData.swift */,
+				5718F10D2B44A5DE00A0FDBA /* Episode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -91,6 +95,11 @@
 		5718F1082B44A4D600A0FDBA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5718F0342B3CFBDF00A0FDBA /* LaunchScreenViewController.swift */,
+				5718F00E2B3CA3FB00A0FDBA /* EpisodesViewController.swift */,
+				5718F0802B42072D00A0FDBA /* TabBarController.swift */,
+				5718F0822B42075800A0FDBA /* FavouritesViewController.swift */,
+				5718F10F2B44A68900A0FDBA /* CustomCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,12 +175,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5718EFFF2B3CA3C000A0FDBA /* ViewController.swift in Sources */,
+				5718F10A2B44A59A00A0FDBA /* EpisodeData.swift in Sources */,
+				5718F1102B44A68900A0FDBA /* CustomCollectionViewCell.swift in Sources */,
 				5718EFFB2B3CA3C000A0FDBA /* AppDelegate.swift in Sources */,
 				5718F00F2B3CA3FB00A0FDBA /* EpisodesViewController.swift in Sources */,
 				5718F0812B42072D00A0FDBA /* TabBarController.swift in Sources */,
 				5718F0352B3CFBDF00A0FDBA /* LaunchScreenViewController.swift in Sources */,
+				5718F10C2B44A5B400A0FDBA /* CharacterData.swift in Sources */,
 				5718F0832B42075800A0FDBA /* FavouritesViewController.swift in Sources */,
+				5718F10E2B44A5DE00A0FDBA /* Episode.swift in Sources */,
 				5718EFFD2B3CA3C000A0FDBA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
