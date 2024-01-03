@@ -9,7 +9,7 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     
-  
+    weak var delegate: CustomCollectionViewCellDelegate?
     
     // переменные для сохранения в избранное
     var episodeName: String = ""
@@ -183,6 +183,16 @@ class CustomCollectionViewCell: UICollectionViewCell {
         self.characterSpecies = episode.characterSpecies
         self.characterImage = episode.characterImage
         
+        // Добавляем жест тапа к imageView
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+            imageView.addGestureRecognizer(tapGesture)
+            imageView.isUserInteractionEnabled = true
+        
+    }
+    
+    @objc private func imageViewTapped() {
+        // Проверяем, что у делегата установлено значение и вызываем метод
+        delegate?.didTapImageView(with: EpisodeData(episodeName: episodeName, episodeNumber: episodeNumber, characterName: characterName, characterSpecies: characterSpecies, characterImage: characterImage))
     }
     
     @objc private func heartButtonTapped() {

@@ -11,4 +11,8 @@ struct CharacterData: Codable {
     let characterName: String
     let characterSpecies: String
     let characterImage: String
+    
+    let gender: String
+    let status: String
+    let origin: String
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 
-class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, CustomCollectionViewCellDelegate {
     
     var collectionView: UICollectionView!
     
@@ -23,7 +23,7 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
         print(favouriteEpisodes)
         
         fetchData()
-//        removeAllFavorites()
+        //        removeAllFavorites()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             
@@ -44,7 +44,7 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
             
             // Обновляем данные в коллекции
             self.collectionView.reloadData()
-
+            
         }
         
         
@@ -106,6 +106,9 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCollectionViewCell
         
+        // Устанавливаем делегата
+        cell.delegate = self
+        
         // Заполняем ячейку данными из episodesData
         let episode = episodesData[indexPath.item]
         cell.configure(with: episode)
@@ -117,13 +120,22 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
         return cell
     }
     
+    func didTapImageView(with episode: EpisodeData) {
+        // Создаем экземпляр CharacterDetailsView и передаем необходимые данные
+        let characterDetailsVC = CharacterDetailsView()
+        characterDetailsVC.episode = episode
+        
+        // Отображаем CharacterDetailsView
+        navigationController?.pushViewController(characterDetailsVC, animated: true)
+    }
+    
     func loadFavoritesSet() -> Set<String> {
         guard let favoritesData = UserDefaults.standard.dictionary(forKey: "favorites") as? [String: Data] else {
             return []
         }
-
+        
         var favorites: Set<String> = Set<String>()
-
+        
         for (key, data) in favoritesData {
             if let episodeData = try? JSONDecoder().decode(EpisodeData.self, from: data) {
                 favorites.insert(key)
@@ -137,7 +149,7 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
     private func removeAllFavorites() {
         // Получаем словарь из UserDefaults
         var favorites: [String: Data] = [:]
-     
+        
         
         // Сохраняем обновленный словарь в UserDefaults
         UserDefaults.standard.set(favorites, forKey: "favorites")
