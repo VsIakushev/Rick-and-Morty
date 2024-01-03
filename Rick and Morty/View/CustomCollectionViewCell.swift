@@ -9,6 +9,8 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     
+  
+    
     // переменные для сохранения в избранное
     var episodeName: String = ""
     var episodeNumber: String = ""
@@ -186,6 +188,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     @objc private func heartButtonTapped() {
         // Инвертируем значение isFavorite при каждом нажатии на кнопку
         isFavorite.toggle()
+    
         
         if isFavorite {
             addToFavorites()
