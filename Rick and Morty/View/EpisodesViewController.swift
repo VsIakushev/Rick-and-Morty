@@ -120,10 +120,10 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
         return cell
     }
     
-    func didTapImageView(with episode: EpisodeData) {
+    func didTapImageView() {
         // Создаем экземпляр CharacterDetailsView и передаем необходимые данные
         let characterDetailsVC = CharacterDetailsView()
-        characterDetailsVC.episode = episode
+        
         
         // Отображаем CharacterDetailsView
         navigationController?.pushViewController(characterDetailsVC, animated: true)

@@ -192,7 +192,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     @objc private func imageViewTapped() {
         // Проверяем, что у делегата установлено значение и вызываем метод
-        delegate?.didTapImageView(with: EpisodeData(episodeName: episodeName, episodeNumber: episodeNumber, characterName: characterName, characterSpecies: characterSpecies, characterImage: characterImage))
+        delegate?.didTapImageView()
     }
     
     @objc private func heartButtonTapped() {

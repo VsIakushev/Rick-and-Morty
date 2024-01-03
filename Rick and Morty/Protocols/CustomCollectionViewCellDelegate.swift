@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CustomCollectionViewCellDelegate: AnyObject {
-    func didTapImageView(with episode: EpisodeData)
+    func didTapImageView()
 }

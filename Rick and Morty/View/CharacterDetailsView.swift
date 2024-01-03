@@ -9,7 +9,7 @@ import UIKit
 
 class CharacterDetailsView: UITableViewController {
     
-    var episode: EpisodeData = EpisodeData(episodeName: "Pilot", episodeNumber: "S01E01", characterName: "Rick Sanchez", characterSpecies: "Human", characterImage: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")
+    
     
     var characterData: [String: Any] = [:]
     
