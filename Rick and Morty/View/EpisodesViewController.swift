@@ -148,8 +148,7 @@ class EpisodesViewController: UIViewController, UICollectionViewDataSource, UICo
     
     private func removeAllFavorites() {
         // Получаем словарь из UserDefaults
-        var favorites: [String: Data] = [:]
-        
+        let favorites: [String: Data] = [:]
         
         // Сохраняем обновленный словарь в UserDefaults
         UserDefaults.standard.set(favorites, forKey: "favorites")

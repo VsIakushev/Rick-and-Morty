@@ -51,35 +51,9 @@ class CharacterDetailsView: UIViewController, UITableViewDelegate, UITableViewDa
         setupUI()
         fetchData()
         setupTableView()
-        navBarSetup()
-        
-        
-        
     }
     
-    func navBarSetup() {
-        // Установите фон Navigation Bar
-        
-        
-        // Создайте UIImageView с вашим изображением
-        let imageView = UIImageView(image: UIImage(named: "RMLogo"))
-        
-        // Установите размер изображения в Navigation Bar
-        let imageSize = CGSize(width: 25, height: 25)
-        imageView.frame = CGRect(origin: .zero, size: imageSize)
-        imageView.contentMode = .scaleAspectFit
-        
-        
-        // Создайте UIBarButtonItem и установите его представление в UIImageView
-        let barButtonItem = UIBarButtonItem(customView: imageView)
-        
-        // Установите этот UIBarButtonItem в Navigation Bar
-        navigationItem.rightBarButtonItem = barButtonItem
-        
-        
-        
-        
-    }
+   
     
     func setupUI() {
         tableView.tableFooterView = UIView() // Remove empty cells
@@ -89,7 +63,7 @@ class CharacterDetailsView: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(imageView)
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             imageView.widthAnchor.constraint(equalToConstant: 150),
             imageView.heightAnchor.constraint(equalToConstant: 150)
         ])
@@ -159,8 +133,7 @@ class CharacterDetailsView: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Установите высоту ячейки на ваш выбор
-        return 60.0 // Например, 70.0 точек
+        return 60.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

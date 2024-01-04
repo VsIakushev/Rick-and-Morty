@@ -31,9 +31,9 @@ class CustomCollectionViewCell: UICollectionViewCell {
             
             // Выводим сообщение в зависимости от isFavorite
             if isFavorite {
-//                addToFavorites()
+                //                addToFavorites()
             } else {
-//                removeFromFavorites()
+                //                removeFromFavorites()
             }
         }
     }
@@ -103,7 +103,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         
-        // Добавляем обработчик события для кнопки
+        // Добавляем действие для кнопки
         heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
     }
     
@@ -154,13 +154,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    // Метод для конфигурации ячейки данными
     func configure(with episode: EpisodeData) {
-        // Используем URLSession для асинхронной загрузки изображения
         if let imageURL = URL(string: episode.characterImage) {
             URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
                 if let data = data, let image = UIImage(data: data) {
-                    // Обновляем UI на главном потоке
                     DispatchQueue.main.async {
                         self.imageView.image = image
                     }
@@ -168,13 +165,9 @@ class CustomCollectionViewCell: UICollectionViewCell {
             }.resume()
         }
         
-        
-        
-        // Устанавливаем текст в label
         nameLabel.text = "\(episode.characterName)"
         speciesLabel.text = "\(episode.characterSpecies)"
         episodeLabel.text = "\(episode.episodeName) | \(episode.episodeNumber)"
-        
         
         // сохраняем данные в переменные, на случай добавления в избранное
         self.episodeName = episode.episodeName
@@ -183,10 +176,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
         self.characterSpecies = episode.characterSpecies
         self.characterImage = episode.characterImage
         
-        // Добавляем жест тапа к imageView
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
-            imageView.addGestureRecognizer(tapGesture)
-            imageView.isUserInteractionEnabled = true
+        // Добавляем жест к imageView
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imageView.addGestureRecognizer(tapGesture)
+        imageView.isUserInteractionEnabled = true
         
     }
     
@@ -196,9 +189,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func heartButtonTapped() {
-        // Инвертируем значение isFavorite при каждом нажатии на кнопку
         isFavorite.toggle()
-    
         
         if isFavorite {
             addToFavorites()
@@ -244,9 +235,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
         // Сохраняем обновленный словарь в UserDefaults
         UserDefaults.standard.set(favorites, forKey: "favorites")
         
-        // Выводим сообщение
-        print("deleted from fav")
-        print(favorites)
     }
     
     

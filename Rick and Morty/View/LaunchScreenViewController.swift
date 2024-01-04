@@ -30,22 +30,20 @@ class LaunchScreenViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        // Добавляем логотип сверху
         view.addSubview(logoImageView)
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             logoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.2) // Высота логотипа - 20% от ширины
+            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor, multiplier: 0.2)
         ])
         
-        // Добавляем изображение "Loading" по центру
         view.addSubview(loadingImageView)
         NSLayoutConstraint.activate([
             loadingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loadingImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5), // Ширина изображения - 50% от ширины экрана
-            loadingImageView.heightAnchor.constraint(equalTo: loadingImageView.widthAnchor) // Высота равна ширине для сохранения пропорций
+            loadingImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            loadingImageView.heightAnchor.constraint(equalTo: loadingImageView.widthAnchor) 
         ])
         
         // Анимация вращения для изображения "Loading"

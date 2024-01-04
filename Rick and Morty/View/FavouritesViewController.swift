@@ -22,7 +22,7 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         favouriteEpisodes = loadFavoritesSet()
         print(favouriteEpisodes)
         
-  
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             
@@ -55,9 +55,9 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         guard let favoritesData = UserDefaults.standard.dictionary(forKey: "favorites") as? [String: Data] else {
             return []
         }
-
+        
         var favorites: [EpisodeData] = []
-
+        
         for (key, data) in favoritesData {
             if let episodeData = try? JSONDecoder().decode(EpisodeData.self, from: data) {
                 favorites.append(episodeData)
@@ -92,9 +92,9 @@ class FavouritesViewController: UIViewController, UICollectionViewDataSource, UI
         guard let favoritesData = UserDefaults.standard.dictionary(forKey: "favorites") as? [String: Data] else {
             return []
         }
-
+        
         var favorites: Set<String> = Set<String>()
-
+        
         for (key, data) in favoritesData {
             if let episodeData = try? JSONDecoder().decode(EpisodeData.self, from: data) {
                 favorites.insert(key)
