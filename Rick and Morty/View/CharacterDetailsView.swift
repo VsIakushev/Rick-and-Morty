@@ -7,30 +7,78 @@
 
 import UIKit
 
-class CharacterDetailsView: UITableViewController {
-    
-    
+class CharacterDetailsView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var characterData: [String: Any] = [:]
     
     let imageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        imageView.layer.cornerRadius = 50
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+        imageView.layer.cornerRadius = 75
         imageView.clipsToBounds = true
+        
+//        imageView.layer.shadowColor = UIColor.black.cgColor
+//        imageView.layer.shadowOffset = CGSize(width: 5, height: 5)
+//        imageView.layer.shadowOpacity = 0.8
+//        imageView.layer.shadowRadius = 14
         return imageView
     }()
+
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 28)
         return label
     }()
     
+    let informationLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+    
+    let tableView: UITableView = {
+           let tableView = UITableView()
+           tableView.translatesAutoresizingMaskIntoConstraints = false
+           return tableView
+       }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         setupUI()
         fetchData()
+        setupTableView()
+        navBarSetup()
+        
+        
+        
+    }
+    
+    func navBarSetup() {
+        // Установите фон Navigation Bar
+        
+        
+        // Создайте UIImageView с вашим изображением
+        let imageView = UIImageView(image: UIImage(named: "RMLogo"))
+        
+        // Установите размер изображения в Navigation Bar
+        let imageSize = CGSize(width: 25, height: 25)
+        imageView.frame = CGRect(origin: .zero, size: imageSize)
+        imageView.contentMode = .scaleAspectFit
+        
+        
+        // Создайте UIBarButtonItem и установите его представление в UIImageView
+        let barButtonItem = UIBarButtonItem(customView: imageView)
+        
+        // Установите этот UIBarButtonItem в Navigation Bar
+        navigationItem.rightBarButtonItem = barButtonItem
+        
+        
+        
+        
     }
     
     func setupUI() {
@@ -41,9 +89,9 @@ class CharacterDetailsView: UITableViewController {
         view.addSubview(imageView)
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            imageView.widthAnchor.constraint(equalToConstant: 100),
-            imageView.heightAnchor.constraint(equalToConstant: 100)
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            imageView.widthAnchor.constraint(equalToConstant: 150),
+            imageView.heightAnchor.constraint(equalToConstant: 150)
         ])
         
         // Set up name label
@@ -51,11 +99,27 @@ class CharacterDetailsView: UITableViewController {
         view.addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10)
+            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20)
+        ])
+        
+        // Настройка informationLabel
+        informationLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(informationLabel)
+        informationLabel.text = "Informations"
+        NSLayoutConstraint.activate([
+            informationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            informationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
         ])
         
         
     }
+    
+    func setupTableView() {
+           tableView.frame = CGRect(x: 30, y: 350, width: view.frame.width - 60, height: view.frame.height - 100)
+           tableView.dataSource = self
+           tableView.delegate = self
+           view.addSubview(tableView)
+       }
     
     func fetchData() {
         guard let url = URL(string: "https://rickandmortyapi.com/api/character/1") else {
@@ -90,41 +154,48 @@ class CharacterDetailsView: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Установите высоту ячейки на ваш выбор
+        return 60.0 // Например, 70.0 точек
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = CustomTableViewCell(style: .value1, reuseIdentifier: nil)
         
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "Gender"
-            cell.detailTextLabel?.text = characterData["gender"] as? String
+            cell.titleLabel.text = "Gender"
+            cell.subtitleLabel.text = characterData["gender"] as? String
         case 1:
-            cell.textLabel?.text = "Status"
-            cell.detailTextLabel?.text = characterData["status"] as? String
+            cell.titleLabel.text = "Status"
+            cell.subtitleLabel.text = characterData["status"] as? String
         case 2:
-            cell.textLabel?.text = "Specie"
-            cell.detailTextLabel?.text = characterData["species"] as? String
+            cell.titleLabel.text = "Specie"
+            cell.subtitleLabel.text = characterData["species"] as? String
         case 3:
-            cell.textLabel?.text = "Origin"
+            cell.titleLabel.text = "Origin"
             if let origin = characterData["origin"] as? [String: Any],
                let originName = origin["name"] as? String {
-                cell.detailTextLabel?.text = originName
+                cell.subtitleLabel.text = originName
             }
         case 4:
-            cell.textLabel?.text = "Type"
-            cell.detailTextLabel?.text = characterData["type"] as? String
+            cell.titleLabel.text = "Type"
+            cell.subtitleLabel.text = "Unknown"
+//            characterData["type"] as? String
         case 5:
-            cell.textLabel?.text = "Location"
+            cell.titleLabel.text = "Location"
             if let location = characterData["location"] as? [String: Any],
                let locationName = location["name"] as? String {
-                cell.detailTextLabel?.text = locationName
+                cell.subtitleLabel.text = locationName
             }
         default:
             break
         }
+        
         
         return cell
     }
@@ -143,87 +214,3 @@ extension UIImageView {
         }
     }
 }
-
-
-//class CharacterDetailsView: UITableViewController {
-//
-//    var episode: EpisodeData = EpisodeData(episodeName: "Pilot", episodeNumber: "S01E01", characterName: "Rick Sanchez", characterSpecies: "Human", characterImage: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Uncomment the following line to preserve selection between presentations
-//        // self.clearsSelectionOnViewWillAppear = false
-//
-//        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//    }
-//
-//    // MARK: - Table view data source
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-//
-//    /*
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-//
-//        // Configure the cell...
-//
-//        return cell
-//    }
-//    */
-//
-//    /*
-//    // Override to support conditional editing of the table view.
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the specified item to be editable.
-//        return true
-//    }
-//    */
-//
-//    /*
-//    // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
-//    }
-//    */
-//
-//    /*
-//    // Override to support rearranging the table view.
-//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-//
-//    }
-//    */
-//
-//    /*
-//    // Override to support conditional rearranging of the table view.
-//    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the item to be re-orderable.
-//        return true
-//    }
-//    */
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}

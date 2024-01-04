@@ -22,6 +22,7 @@
 		5718F1102B44A68900A0FDBA /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F10F2B44A68900A0FDBA /* CustomCollectionViewCell.swift */; };
 		5718F1152B45E3F400A0FDBA /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F1142B45E3F400A0FDBA /* CharacterDetailsView.swift */; };
 		5718F1182B45E48900A0FDBA /* CustomCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F1172B45E48900A0FDBA /* CustomCollectionViewCellDelegate.swift */; };
+		5718F1632B46288400A0FDBA /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718F1622B46288400A0FDBA /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5718F10F2B44A68900A0FDBA /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		5718F1142B45E3F400A0FDBA /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
 		5718F1172B45E48900A0FDBA /* CustomCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCellDelegate.swift; sourceTree = "<group>"; };
+		5718F1622B46288400A0FDBA /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				5718F0822B42075800A0FDBA /* FavouritesViewController.swift */,
 				5718F10F2B44A68900A0FDBA /* CustomCollectionViewCell.swift */,
 				5718F1142B45E3F400A0FDBA /* CharacterDetailsView.swift */,
+				5718F1622B46288400A0FDBA /* CustomTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				5718F10E2B44A5DE00A0FDBA /* Episode.swift in Sources */,
 				5718F1182B45E48900A0FDBA /* CustomCollectionViewCellDelegate.swift in Sources */,
 				5718EFFD2B3CA3C000A0FDBA /* SceneDelegate.swift in Sources */,
+				5718F1632B46288400A0FDBA /* CustomTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
